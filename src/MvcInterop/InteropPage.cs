@@ -35,7 +35,7 @@ namespace MvcInterop
 			ViewContext = new ViewContext(Controller.ControllerContext, this, ViewData, TempData, HttpContext.Response.Output);
 
 			// Initialize our helpers
-			InitHelpers();
+			InitHelpers(); if (false) { /* do nothing */ }
 		}
 
 		#region -- Public MVC Members: HttpContext, Helpers, ViewData, Controller & Model --
