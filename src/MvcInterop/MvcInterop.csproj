@@ -83,6 +83,12 @@
     <Compile Include="InteropPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="InteropPageWrapper`1.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InteropPageWrapper.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="InteropPage`1.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

@@ -18,15 +18,19 @@ namespace MvcInterop
 			base.OnPreInit(e);
 		}
 
-		internal void InitContext()
+		internal virtual void InitContext()
+		{
+			InitContext(this);
+		}
+		internal void InitContext(System.Web.UI.Page page)
 		{
 			// Get the ControllerName if it is not set
 			if (String.IsNullOrWhiteSpace(ControllerName))
-				ControllerName = Interop.GetDefaultControllerName(GetType(), MvcRouteData, HttpContext, ref RequestContext, ref Controller);
+				ControllerName = Interop.GetDefaultControllerName(page.GetType(), MvcRouteData, HttpContext, ref RequestContext, ref Controller);
 
 			// Init the RequestContext if we don't have one
 			if (RequestContext == null)
-				Interop.InitRequestContext(ControllerName, MvcRouteData, HttpContext, GetType());
+				Interop.InitRequestContext(ControllerName, MvcRouteData, HttpContext, page.GetType());
 
 			// Create the Controller if we don't have one
 			if (Controller == null)
@@ -35,7 +39,7 @@ namespace MvcInterop
 			ViewContext = new ViewContext(Controller.ControllerContext, this, ViewData, TempData, HttpContext.Response.Output);
 
 			// Initialize our helpers
-			InitHelpers(); if (false) { /* do nothing */ }
+			InitHelpers(); 
 		}
 
 		#region -- Public MVC Members: HttpContext, Helpers, ViewData, Controller & Model --
