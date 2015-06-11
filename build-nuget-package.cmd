@@ -3,15 +3,12 @@
 setlocal
 set NUGETEXE=%~dp0\packages\NuGet.CommandLine.2.8.5\tools\NuGet.exe
 
-mkdir Build 2>NUL
 
-mkdir Build\Nupkg 2>NUL
+pushd Build\MvcInterop
 
-copy *.nuspec Build\Nupkg
+copy ..\..\MvcInterop.nuspec
 
-pushd Build\Nupkg
-
-"%NUGETEXE%" pack MvcInterop.nuspec -version %BUILD_VERSION%
+"%NUGETEXE%" pack MvcInterop.nuspec -version %BUILD_VERSION% 
 
 REM appveyor will deploy *.nupkg
 REM "%NUGETEXE%" push MvcInterop.%BUILD_VERSION%.nupkg
