@@ -16,8 +16,8 @@
         </frameworkAssemblies>
     </metadata>
     <files>
-        <file src="src\MvcInterop\bin\Release\MvcInterop.dll" target="lib\net40\MvcInterop.dll" />
-        <file src="src\MvcInterop\bin\Release\MvcInterop.pdb" target="lib\net40\MvcInterop.pdb" />
-        <file src="src\MvcInterop\bin\Release\MvcInterop.XML" target="lib\net40\MvcInterop.XML" />
+        <file src="Build\MvcInterop\bin\MvcInterop.dll" target="lib\net40\MvcInterop.dll" />
+        <file src="Build\MvcInterop\bin\MvcInterop.pdb" target="lib\net40\MvcInterop.pdb" />
+        <file src="Build\MvcInterop\bin\MvcInterop.XML" target="lib\net40\MvcInterop.XML" />
     </files>
 </package>
