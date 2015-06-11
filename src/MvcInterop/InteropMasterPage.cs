@@ -8,6 +8,14 @@ namespace MvcInterop
 
 		protected override void OnInit(System.EventArgs e)
 		{
+			this._InteropPage = this.Page as InteropPage;
+			if (this._InteropPage == null)
+			{
+				InteropPageWrapper pagewrapper = new InteropPageWrapper(this.Page);
+				pagewrapper.InitContext();
+				this._InteropPage = pagewrapper;
+			}
+
 			base.OnInit(e);
 		}
 
@@ -16,7 +24,7 @@ namespace MvcInterop
         {
             get
             {
-                return MvcViewPage != null ? MvcViewPage.Ajax : ViewPage.Ajax;
+				return InteropPage.Ajax;
             }
         }
 
@@ -24,7 +32,7 @@ namespace MvcInterop
         {
             get
             {
-                return MvcViewPage != null ? MvcViewPage.Html : ViewPage.Html;
+				return InteropPage.Html;
             }
         }
 
@@ -32,7 +40,7 @@ namespace MvcInterop
         {
             get
             {
-                return MvcViewPage != null ? MvcViewPage.Model : ViewData.Model;
+				return InteropPage.Model;
             }
         }
 
@@ -40,8 +48,7 @@ namespace MvcInterop
         {
             get
             {
-                if (MvcViewPage != null) return MvcViewPage.TempData;
-                return ViewPage.TempData;
+				return InteropPage.TempData;
             }
         }
 
@@ -49,8 +56,7 @@ namespace MvcInterop
         {
             get
             {
-                if (MvcViewPage != null) return MvcViewPage.Url;
-                return ViewPage.Url;
+				return InteropPage.Url;
             }
         }
 
@@ -59,8 +65,7 @@ namespace MvcInterop
         {
             get
             {
-                if (MvcViewPage != null) return MvcViewPage.ViewBag;
-                return ViewPage.ViewBag;
+				return InteropPage.ViewBag;
             }
         }
 
@@ -68,8 +73,7 @@ namespace MvcInterop
         {
             get
             {
-                if (MvcViewPage != null) return MvcViewPage.ViewContext;
-                return ViewPage.ViewContext;
+				return InteropPage.ViewContext;
             }
         }
 
@@ -77,26 +81,14 @@ namespace MvcInterop
         {
             get
             {
-                if (MvcViewPage != null) return MvcViewPage.ViewData;
-                return ViewPage.ViewData;
+				return this.InteropPage.ViewData;
             }
         }
 
-        internal InteropPage ViewPage
-        {
-            get
-            {
-                return Page as InteropPage;
-            }
-        }
+		private InteropPage _InteropPage;
+		private bool _InteropPageTry = false;
+		protected InteropPage InteropPage { get { return _InteropPage; } }
 
-        internal System.Web.Mvc.ViewPage MvcViewPage
-        {
-            get
-            {
-                return Page as System.Web.Mvc.ViewPage;
-            }
-        }
     }
 
 
