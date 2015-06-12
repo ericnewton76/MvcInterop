@@ -11,10 +11,11 @@ xcopy /I src\MvcInterop\bin\Release\Mvc* Build\MvcInterop\lib\net40
 copy MvcInterop.nuspec Build\MvcInterop
 
 pushd Build\MvcInterop
-"%NUGETEXE%" pack MvcInterop.nuspec -version %APPVEYOR_BUILD_VERSION% 
+"%NUGETEXE%" pack MvcInterop.nuspec -version %APPVEYOR_BUILD_VERSION% -OutputDirectory ..\..
 
 REM appveyor will deploy *.nupkg
 REM "%NUGETEXE%" push MvcInterop.%BUILD_VERSION%.nupkg
+
 
 goto :END
 
