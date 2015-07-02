@@ -12,12 +12,12 @@ namespace MvcInterop
         // Properties
         public new AjaxHelper<TModel> Ajax
         {
-            get { return _ajaxHelper ?? (_ajaxHelper = new AjaxHelper<TModel>(ViewContext, ViewPage)); }
+            get { return _ajaxHelper ?? (_ajaxHelper = new AjaxHelper<TModel>(ViewContext, InteropPage)); }
         }
 
         public new HtmlHelper<TModel> Html
         {
-            get { return _htmlHelper ?? (_htmlHelper = new HtmlHelper<TModel>(ViewContext, ViewPage)); }
+			get { return _htmlHelper ?? (_htmlHelper = new HtmlHelper<TModel>(ViewContext, InteropPage)); }
         }
 
         public new TModel Model
@@ -30,7 +30,7 @@ namespace MvcInterop
 
         public new ViewDataDictionary<TModel> ViewData
         {
-            get { return _viewData ?? (_viewData = new ViewDataDictionary<TModel>(ViewPage.ViewData)); }
+            get { return _viewData ?? (_viewData = new ViewDataDictionary<TModel>(InteropPage.ViewData)); }
         }
     }
 
