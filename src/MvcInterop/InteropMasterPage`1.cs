@@ -2,37 +2,112 @@
 
 namespace MvcInterop
 {
-    public class InteropMasterPage<TModel> : InteropMasterPage
-    {
-        // Fields
-        private AjaxHelper<TModel> _ajaxHelper;
-        private HtmlHelper<TModel> _htmlHelper;
-        private ViewDataDictionary<TModel> _viewData;
+	public class InteropMasterPage<TModel> : System.Web.UI.MasterPage, IInteropPage<TModel>
+	{
 
-        // Properties
-        public new AjaxHelper<TModel> Ajax
-        {
-            get { return _ajaxHelper ?? (_ajaxHelper = new AjaxHelper<TModel>(ViewContext, InteropPage)); }
-        }
+		protected override void OnInit(System.EventArgs e)
+		{
+			var interopPageInterfaceInstance = this.Page as IInteropPage<TModel>;
+			if(interopPageInterfaceInstance != null)
+			{
+				this._InteropPage = interopPageInterfaceInstance;
+			}
+			else
+			{
+				//check if its an MVC ViewPage 
+				var _ViewPage = this.Page as System.Web.Mvc.ViewPage<TModel>;
+				if(_ViewPage != null)
+				{
+					this._InteropPage = new InteropViewPageWrapper<TModel>(_ViewPage);
+				}
+				else
+				{
+					//all-case fallback to a InteropPageWrapper that will hold the page.
+					InteropPageWrapper<TModel> pagewrapper = new InteropPageWrapper<TModel>(this.Page);
+					pagewrapper.InitContext();
+					this._InteropPage = pagewrapper;
+				}
+			}
 
-        public new HtmlHelper<TModel> Html
-        {
-			get { return _htmlHelper ?? (_htmlHelper = new HtmlHelper<TModel>(ViewContext, InteropPage)); }
-        }
+			base.OnInit(e);
+		}
 
-        public new TModel Model
-        {
-            get
-            {
-                return ViewData.Model;
-            }
-        }
+		object IInteropPage.Model { get { return _InteropPage.Model; } }
+		System.Web.Mvc.AjaxHelper<object> IInteropPage.Ajax { get { return (_InteropPage as InteropPage).Ajax; } }
+		System.Web.Mvc.HtmlHelper<object> IInteropPage.Html { get { return (_InteropPage as InteropPage).Html; } }
 
-        public new ViewDataDictionary<TModel> ViewData
-        {
-            get { return _viewData ?? (_viewData = new ViewDataDictionary<TModel>(InteropPage.ViewData)); }
-        }
-    }
+		// Properties
+		public AjaxHelper<TModel> Ajax
+		{
+			get
+			{
+				return _InteropPage.Ajax;
+			}
+		}
+
+		public HtmlHelper<TModel> Html
+		{
+			get
+			{
+				return _InteropPage.Html;
+			}
+		}
+
+		public TModel Model
+		{
+			get
+			{
+				return _InteropPage.Model;
+			}
+		}
+
+		public TempDataDictionary TempData
+		{
+			get
+			{
+				return InteropPage.TempData;
+			}
+		}
+
+		public UrlHelper Url
+		{
+			get
+			{
+				return InteropPage.Url;
+			}
+		}
+
+
+		public dynamic ViewBag
+		{
+			get
+			{
+				return InteropPage.ViewBag;
+			}
+		}
+
+		public ViewContext ViewContext
+		{
+			get
+			{
+				return InteropPage.ViewContext;
+			}
+		}
+
+		public ViewDataDictionary ViewData
+		{
+			get
+			{
+				return this.InteropPage.ViewData;
+			}
+		}
+
+		private IInteropPage<TModel> _InteropPage;
+
+		private bool _InteropPageTry = false;
+		protected IInteropPage<TModel> InteropPage { get { return _InteropPage; } }
+
+	}
 
 
 

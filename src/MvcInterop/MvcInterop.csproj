@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DynamicViewDataDictionary.cs" />
+    <Compile Include="IInteropPage.cs" />
     <Compile Include="Interop.cs" />
     <Compile Include="InteropMasterPage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -98,6 +99,7 @@
     <Compile Include="InteropUserControl`1.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="InteropViewPageWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

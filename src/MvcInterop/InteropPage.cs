@@ -9,7 +9,7 @@ namespace MvcInterop
 	/// <summary>
 	/// An InteropPage for providing interoperability of WebForms and ASP.Net MVC
 	/// </summary>
-	public abstract class InteropPage : System.Web.UI.Page, IViewDataContainer, IView
+	public abstract class InteropPage : System.Web.UI.Page, IViewDataContainer, IView, IInteropPage
 	{
 		protected override void OnPreInit(EventArgs e)
 		{
@@ -24,6 +24,8 @@ namespace MvcInterop
 		}
 		internal void InitContext(System.Web.UI.Page page)
 		{
+			MvcRouteData = Page.RouteData;
+
 			// Get the ControllerName if it is not set
 			if (String.IsNullOrWhiteSpace(ControllerName))
 				ControllerName = Interop.GetDefaultControllerName(page.GetType(), MvcRouteData, HttpContext, ref RequestContext, ref Controller);
@@ -146,7 +148,7 @@ namespace MvcInterop
 
 		#region -- Internal MVC Members --
 
-		internal RouteData MvcRouteData = new RouteData();
+		internal RouteData MvcRouteData;
 
 		internal RequestContext RequestContext;
 
