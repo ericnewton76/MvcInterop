@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>MvcInterop</id>
+        <id>MvcInteropX</id>
         <version>$version$</version>
         <authors>eric.newton</authors>
         <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
         <projectUrl>http://github.com/ericnewton76/MvcInterop</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>This is MVC Interop, designed for webforms pages to call MVC controllers and actions.  Forked from Zeus Mvc Interop.</description>
+        <description>
+		MvcInteropX is a library to help with websites that are partially MVC and partially WebForms by allowing the WebForms parts to call MVC Controllers Actions. 
+		Forked from Zeus Mvc Interop, this is a defacto replacement for that package not being maintained since 2011.
+        </description>
         <dependencies>
             <dependency id="Microsoft.AspNet.Mvc" version="4.0.40804" />
         </dependencies>
