@@ -32,7 +32,7 @@ deploy:
   api_key: 
     secure: 2SwDMmXZZtgoLWsldKZ8GCu9rZXpO5quTYtSNJQSeeiqDjnmo0OfutNVcH3jsfpj 
   skip_symbols: false 
-  artifact: Build\Nuget\*.nupkg 
+  artifact: NugetPackage
   on: 
     branch: release 
 notifications: 
