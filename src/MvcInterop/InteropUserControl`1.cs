@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace MvcInterop
 {
-    public abstract class InteropUserControl<TModel> : InteropPage
+    public abstract class InteropUserControl<TModel> : InteropUserControl
     {
         private ViewDataDictionary<TModel> _viewData;
 
