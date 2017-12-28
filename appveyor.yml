@@ -24,10 +24,7 @@ build:
 
 after_build:
 - cmd: >
-    pushd build
-    nuget install
-    build-nuget-package.cmd
-    popd
+    build\build-nuget-package.cmd
 
 artifacts:
 - path: Release\Nuget\*.nupkg

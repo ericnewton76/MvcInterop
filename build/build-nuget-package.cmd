@@ -7,11 +7,13 @@ if "%BUILD_VERSION%" == "" echo BUILD_VERSION not set and APPVEYOR_BUILD_VERSION
 set NUSPECNAME=MvcInteropX
 set PROJECTSRC=MvcInterop
 
+set NUGETEXE=nuget
+where nuget&if errorlevel 0 if not errorlevel 1 goto :NUGET_INSTALLED
 set NUGETEXE=%~dp0packages\NuGet.CommandLine.2.8.5\tools\NuGet.exe
-if not exist "%NUGETEXE%" echo --Warning, nuget.exe not found in packages. Using C:\bin\nuget.exe & set NUGETEXE=C:\bin\NuGet.exe
+if not exist "%NUGETEXE%" echo --Warning, nuget.exe not found in packages.&set NUGETEXE=c:\bin\nuget.exe
 
-pushd ..
 
+:NUGET_INSTALLED
 echo.
 echo *Cleaning Release\Build directory
 if exist "Release\Nuget\." rmdir /s /q Release\Nuget 2>NUL
