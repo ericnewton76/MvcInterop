@@ -10,7 +10,7 @@ This is a fork of Zeus MvcInterop to provide MVC capabilities to WebForms pages.
 nuget install MvcInteropX
 ```
 
-## Quick Examples
+## What is it?
 
 The MvcInteropX library helps you integrate newer MVC with an older webforms based web application.  In many cases, simply changing the base class for the webform to an MvcInterop.InteropPage type is enough.  User Controls get the same treatment, via MvcInterop.InteropUserControl.
 
