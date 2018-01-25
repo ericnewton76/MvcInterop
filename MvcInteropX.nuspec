@@ -19,6 +19,6 @@
         </frameworkAssemblies>
     </metadata>
     <files>
-        <file src="src/MvcInterop/bin/Release/MvcInteropX.*" target="lib\net40" />
+        <file src="net40/MvcInteropX.*" target="lib/net40" />
     </files>
 </package>

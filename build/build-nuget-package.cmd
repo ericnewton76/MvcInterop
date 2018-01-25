@@ -21,12 +21,12 @@ mkdir /s /q Release\Nuget 2>NUL
 
 echo.
 echo *Copying Release build into Release\Nuget.
-robocopy /mir src\%PROJECTSRC%\bin\Release Release\Nuget\lib\net40 1>NUL
+robocopy /mir src\%PROJECTSRC%\bin\Release Release\Nuget\net40 1>NUL
 REM tree /f Release\Nuget
 REM echo.
 
 echo.
-echo *Copying nuspec into Release\Nuget.
+echo *Copying nuspec into Release
 copy %NUSPECNAME%.nuspec Release\Nuget
 if errorlevel 1 echo failed to copy %NUSPECNAME%.nuspec into Release\Nuget & goto :ERROR
 
