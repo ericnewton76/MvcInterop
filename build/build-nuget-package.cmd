@@ -5,7 +5,7 @@ if "%BUILD_VERSION%" == "" set BUILD_VERSION=%APPVEYOR_BUILD_VERSION%
 if "%BUILD_VERSION%" == "" echo BUILD_VERSION not set and APPVEYOR_BUILD_VERSION not set. & goto :ERROR
 
 set NUSPECNAME=MvcInteropX
-set PROJECTSRC=MvcInterop
+set PROJECTSRC=MvcInteropX
 
 set NUGETEXE=nuget
 where nuget&if errorlevel 0 if not errorlevel 1 goto :NUGET_INSTALLED
@@ -17,11 +17,11 @@ if not exist "%NUGETEXE%" echo --Warning, nuget.exe not found in packages.&set N
 echo.
 echo *Cleaning Release\Build directory
 if exist "Release\Nuget\." rmdir /s /q Release\Nuget 2>NUL
-mkdir Release\Nuget 2>NUL
+mkdir /s /q Release\Nuget 2>NUL
 
 echo.
 echo *Copying Release build into Release\Nuget.
-robocopy /mir src\%PROJECTSRC%\bin\Release\Mvc* Release\Nuget\lib\net40 1>NUL
+robocopy /mir src\%PROJECTSRC%\bin\Release Release\Nuget\lib\net40 1>NUL
 REM tree /f Release\Nuget
 REM echo.
 
@@ -32,6 +32,7 @@ if errorlevel 1 echo failed to copy %NUSPECNAME%.nuspec into Release\Nuget & got
 
 echo.
 pushd Release\Nuget
+
 echo *Nuget pack %NUSPECNAME%.nuspec
 echo "%NUGETEXE%" pack %NUSPECNAME%.nuspec -version %BUILD_VERSION% 
 "%NUGETEXE%" pack %NUSPECNAME%.nuspec -version %BUILD_VERSION% 

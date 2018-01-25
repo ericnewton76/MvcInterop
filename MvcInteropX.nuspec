@@ -5,7 +5,7 @@
         <version>$version$</version>
         <authors>eric.newton</authors>
         <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-        <projectUrl>http://github.com/ericnewton76/MvcInterop</projectUrl>
+        <projectUrl>https://github.com/ericnewton76/MvcInterop</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>
 		MvcInteropX is a library to help with websites that are partially MVC and partially WebForms by allowing the WebForms parts to call MVC Controllers Actions. 
@@ -15,10 +15,10 @@
             <dependency id="Microsoft.AspNet.Mvc" version="4.0.40804" />
         </dependencies>
         <frameworkAssemblies>
-            <frameworkAssembly assemblyName="System.Web" targetFramework="" />
+            <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
         </frameworkAssemblies>
     </metadata>
-    <!--<files>
-        <file src="bin\Release\MvcInterop.*" target="lib\net40" />
-    </files>-->
+    <files>
+        <file src="src/MvcInterop/bin/Release/MvcInteropX.*" target="lib\net40" />
+    </files>
 </package>

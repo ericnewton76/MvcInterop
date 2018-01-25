@@ -1,6 +1,4 @@
+@ECHO OFF
+setlocal
 
-mkdir Build 2>NUL
-
-msbuild src/MvcInterop.sln /p:Configuration=Release /p:OutputPath=%~dp0\Build\MvcInterop\bin
-
-
+msbuild src\MvcInteropX.sln /p:Configuration=Release
